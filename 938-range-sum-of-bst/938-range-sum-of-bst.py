@@ -16,17 +16,16 @@ class Solution(object):
         def sumbst(root):
            
             if not root:
-                return 0
-            
-            if (root.val < low):    #then  only right traversal needed
-                sumbst(root.right)
-            
-            elif (root.val > high):   # then only left traversal needed
-                sumbst(root.left)
+                return []
             else:
-                self.sum1+=root.val
-                sumbst(root.left)
-                sumbst(root.right)
-        sumbst(root)
-        return self.sum1
+                return sumbst(root.left)+[root.val]+sumbst(root.right)
+        l1=sumbst(root)
+        print(l1)
+        k=0
+        for i in l1:
+            if((i>low) and (i<high)):
+                   k=k+i
+        sum1=k+low+high
+        #print(sum1)
+        return sum1
         
